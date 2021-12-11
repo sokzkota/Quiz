@@ -21,9 +21,12 @@
 import urllib.request
 import json
 import html
-length = int(input("Please provide quiz length 10/20/30/50"))
-
-url = f'https://opentdb.com/api.php?amount={length}&type=boolean'
+length = int(input("Please provide quiz length 10/20/30/50:"))
+diff = input("Please provide difficulty medium/easy/hard/whatever: ")
+if diff == "whatever":
+    url = f'https://opentdb.com/api.php?amount={length}&type=boolean&difficulty={diff}'
+else:
+    url = f'https://opentdb.com/api.php?amount={length}&type=boolean'
 response = urllib.request.urlopen(url)
 encoding = response.info().get_content_charset('utf8')
 data = json.loads(response.read().decode(encoding))
